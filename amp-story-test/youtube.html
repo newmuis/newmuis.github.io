@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
-    <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
     <title>YouTube: Cats!</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="helloworld.html">
@@ -17,36 +16,13 @@
   </head>
 
   <body>
-    <amp-story standalone bookend-config-src="bookend.json">
-
-      <amp-story-page id="page-1">
-        <amp-story-grid-layer template="vertical">
-          <amp-youtube data-videoid="FHH6hIc2GyE" layout="responsive"
-              autoplay data-param-controls="0"
-              data-param-disablekb="1" data-param-fs="0"
-              data-param-iv-load-policy="3" data-param-loop="1"
-              data-param-modestbranding="1" data-param-playsinline="1"
-              data-param-rel="0" data-param-showinfo="0"
-              width="16" height="9">
-          </amp-youtube>
-        </amp-story-grid-layer>
-      </amp-story-page>
-
-      <amp-story-page id="page-2">
-        <amp-story-grid-layer template="vertical">
-          <amp-youtube data-videoid="iPLQV2OTsS8" layout="responsive"
-              width="16" height="9">
-          </amp-youtube>
-        </amp-story-grid-layer>
-      </amp-story-page>
-
-      <amp-story-page id="page-3">
-        <amp-story-grid-layer template="vertical">
-          <amp-youtube data-videoid="5Dbvd4E-334" layout="responsive"
-              width="16" height="9">
-          </amp-youtube>
-        </amp-story-grid-layer>
-      </amp-story-page>
-    </amp-story>
+    <amp-youtube data-videoid="FHH6hIc2GyE" layout="responsive"
+        autoplay data-param-controls="0"
+        data-param-disablekb="1" data-param-fs="0"
+        data-param-iv-load-policy="3" data-param-loop="1"
+        data-param-modestbranding="1" data-param-playsinline="1"
+        data-param-rel="0" data-param-showinfo="0"
+        width="16" height="9">
+    </amp-youtube>
   </body>
 </html>
