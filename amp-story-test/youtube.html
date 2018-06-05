@@ -2,8 +2,6 @@
 <html amp lang="en">
   <head>
     <meta charset="utf-8">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <title>YouTube: Cats!</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link rel="canonical" href="helloworld.html">
@@ -16,13 +14,8 @@
   </head>
 
   <body>
-    <amp-youtube data-videoid="FHH6hIc2GyE" layout="responsive"
-        autoplay data-param-controls="0"
-        data-param-disablekb="1" data-param-fs="0"
-        data-param-iv-load-policy="3" data-param-loop="1"
-        data-param-modestbranding="1" data-param-playsinline="1"
-        data-param-rel="0" data-param-showinfo="0"
-        width="16" height="9">
-    </amp-youtube>
+      <iframe id="ytplayer" type="text/html" width="640" height="360"
+      src="https://www.youtube.com/embed/FHH6hIc2GyE?origin=http://newmuis.github.io&autoplay=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&loop=1&modestbranding=1&playsinline=1&rel=0&showinfo=0"
+      frameborder="0"></iframe>
   </body>
 </html>
