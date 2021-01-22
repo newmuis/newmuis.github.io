@@ -27,6 +27,7 @@
         const videoEl = document.createElement('video');
         videoEl.muted = true
         videoEl.src = VIDEO_SRC;
+        videoEl.setAttribute('playsinline', '');
         videoEl.style.borderWidth = '3px';
         videoEl.style.borderStyle = 'solid';
         videoEl.style.borderColor = `#${Math.floor(Math.random() * (256**3 - 1)).toString(16)}`;
