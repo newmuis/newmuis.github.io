@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Video leasing child test</title>
+    <script>
+      function leaseVideo() {
+        window.parent.postMessage({
+          action: 'lease',
+          target: '.my-target-element',
+        }, '*');
+      }
+    </script>
+    <style>
+      html, body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+      }
+      button {
+        cursor: pointer;
+        padding: 20px;
+      }
+      .my-target-element {
+        background: red;
+        padding: 20px;
+        min-height: 100px;
+      }
+      video {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="leaseVideo()">Lease video</button>
+    <div class="my-target-element"></div>
+    <script>
+      // Select the node that will be observed for mutations
+      const targetNode = document.querySelector('.my-target-element');
+
+      // Options for the observer (which mutations to observe)
+      const config = { childList: true };
+
+      // Callback function to execute when mutations are observed
+      const callback = function(mutationsList, observer) {
+        for(const mutation of mutationsList) {
+          mutation.addedNodes.forEach(addedNode => {
+            addedNode.currentTime = 0;
+            addedNode.muted = false;
+            addedNode.play();
+          })
+        }
+      };
+
+      // Create an observer instance linked to the callback function
+      const observer = new MutationObserver(callback);
+
+      // Start observing the target node for configured mutations
+      observer.observe(targetNode, config);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Video leasing test</title>
+    <script>
+      const VIDEO_SRC = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+      const POOL_SIZE = 2;
+      const videoEls = [];
+      let videoCursor = 0;
+
+      function nextVideo() {
+        const videoEl = videoEls[videoCursor];
+        videoCursor = (videoCursor + 1) % POOL_SIZE;
+        return videoEl
+      }
+
+      function blessAll() {
+        videoEls.forEach(videoEl => {
+          const isMuted = videoEl.muted;
+          videoEl.muted = false;
+          if (isMuted) {
+            videoEl.muted = true;
+          }
+        });
+      }
+
+      for (let i = 0; i < POOL_SIZE; i++) {
+        const videoEl = document.createElement('video');
+        videoEl.muted = true
+        videoEl.src = VIDEO_SRC;
+        videoEl.style.borderWidth = '3px';
+        videoEl.style.borderStyle = 'solid';
+        videoEl.style.borderColor = `#${Math.floor(Math.random() * (256**3 - 1)).toString(16)}`;
+        videoEls.push(videoEl)
+      }
+      window.addEventListener('message', (event) => {
+        if (event.data.action === 'lease') {
+          const targetEl = event.source.document.querySelector(event.data.target);
+          const videoToLease = nextVideo();
+          targetEl.appendChild(videoToLease);
+        }
+      }, false);
+    </script>
+    <style>
+      html, body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+      }
+      iframe {
+        border: 1px solid black;
+        flex: 1 1 33%;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe src="./child.html"></iframe>
+    <iframe src="./child.html"></iframe>
+    <iframe src="./child.html"></iframe>
+    <aside class="bar">
+      <button onclick="blessAll()">Bless!</button>
+    </aside>
+  </body>
+</html>
