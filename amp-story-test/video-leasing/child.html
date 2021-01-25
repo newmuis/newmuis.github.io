@@ -33,16 +33,35 @@
     </style>
   </head>
   <body>
+    <div id="timerLabel">...</div>
     <button onclick="leaseVideo()">Lease video</button>
     <div class="my-target-element"></div>
     <script>
-      window.setTimeout(() => {
+      const timerLabelEl = document.getElementById('timerLabel');
+      let timer = 10;
+
+      function playVideos() {
         document.querySelectorAll('video').forEach(videoEl => {
           videoEl.currentTime = 0;
           videoEl.muted = false;
           videoEl.play();
         });
-      }, 10000)
+      }
+
+      function countdown() {
+        timerLabelEl.innerText = `${timer}s...`;
+        window.setTimeout(() => {
+          if (timer == 0) {
+            timerLabelEl.innerText = 'playing!'
+            playVideos();
+          } else {
+            timer--;
+            countdown();
+          }
+        }, 1000)
+      }
+
+      countdown();
     </script>
   </body>
 </html>
