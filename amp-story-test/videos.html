@@ -52,14 +52,16 @@
         videoCount++;
         
         if (videoCount < MAX_POOL_SIZE) {
-          setTimeout(appendVideo, 1000);
+          setTimeout(() => {
+            // Pause the previous video before appending a new one.
+            if (videoEl) {
+              videoEl.pause();
+            }
+            appendVideo();
+          }, 1000);
         }
       }
       
-      // Pause the previous video before appending a new one.
-      if (videoEl) {
-        videoEl.pause();
-      }
       appendVideo();
     </script>
   </body>
