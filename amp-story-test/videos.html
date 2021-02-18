@@ -3,10 +3,12 @@
     <title>Video slot test</title>
     <style>
       html, body {
+        align-items: flex-start;
         counter-reset: video;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: flex-start;
         margin: 0;
         padding: 0;
         width: 100vw;
@@ -38,8 +40,9 @@
       let videoCount = 0;
       
       function appendVideo() {
+        const nonce = Math.random().toString().substring(2);
         const videoEl = document.createElement('video');
-        videoEl.setAttribute('src', VIDEO_SRC);
+        videoEl.setAttribute('src', `${VIDEO_SRC}?nonce=${nonce}`);
         videoEl.setAttribute('autoplay', '');
         videoEl.setAttribute('playsinline', '');
         videoEl.muted = true;
