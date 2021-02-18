@@ -42,7 +42,7 @@
       function appendVideo() {
         const nonce = Math.random().toString().substring(2);
         const videoEl = document.createElement('video');
-        videoEl.setAttribute('src', `${VIDEO_SRC}?nonce=${nonce}`);
+        videoEl.setAttribute('src', `${VIDEO_SRC}?foo=${nonce}`);
         videoEl.setAttribute('autoplay', '');
         videoEl.setAttribute('playsinline', '');
         videoEl.muted = true;
