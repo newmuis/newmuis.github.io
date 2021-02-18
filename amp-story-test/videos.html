@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Video leasing test</title>
+    <style>
+      html, body {
+        counter-reset: video;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+      }
+      video {
+        max-width: 300px;
+        margin: 10px;
+        position: relative;
+      }
+      video::after {
+        counter-increment: video;
+        content: counter(video);
+        background-color: rgba(255, 255, 255, 0.8);
+        color: red;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const VIDEO_SRC = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+      const MAX_POOL_SIZE = 33;
+      let videoCount = 0;
+      
+      function appendVideo() {
+        const videoEl = document.createElement('video');
+        videoEl.setAttribute('src', VIDEO_SRC);
+        videoEl.setAttribute('autoplay', '');
+        videoEl.setAttribute('playsinline', '');
+        videoEl.muted = true;
+        document.body.appendChild(videoEl);
+        videoCount++;
+        
+        if (videoCount < MAX_POOL_SIZE) {
+          setTimeout(appendVideo, 1000);
+        }
+      }
+      
+      appendVideo();
+    </script>
+  </body>
+</html>
